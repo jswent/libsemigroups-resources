@@ -261,7 +261,7 @@ cmd_sanitizer() {
         cd $REPO_PATH
         mkdir -p m4
         ./autogen.sh
-        ./configure CXX='clang++' CXXFLAGS='-fsanitize=$FULL_NAME -fdiagnostics-color -fno-omit-frame-pointer -g -O1'
+        ./configure CXX='clang++' CXXFLAGS='-fsanitize=$FULL_NAME -fdiagnostics-color -fno-omit-frame-pointer -g -O1' --disable-hpcombi
         make -j12
         make $TEST_TARGET -j12
         echo -e '${GREEN}Running tests with $FULL_NAME sanitizer...${NC}'
