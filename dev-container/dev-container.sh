@@ -86,7 +86,7 @@ cmd_shell() {
   fi
 
   echo -e "${GREEN}Entering container shell...${NC}"
-  docker exec -it "$CONTAINER_NAME" /bin/bash
+  docker exec -it "$CONTAINER_NAME" /bin/bash -c '[ -d "libsemigroups" ] && cd libsemigroups; exec bash'
 }
 
 cmd_init() {
