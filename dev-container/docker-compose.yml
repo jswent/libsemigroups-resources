@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  libsemigroups-x86-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/amd64  # Force x86_64 architecture
+    container_name: libsemigroups-x86-dev
+    volumes:
+      # Mount host repository as read-only
+      - ../:/host-repo:ro
+      # Persistent volume for the dev workspace
+      - dev-workspace:/workspace
+      # Persistent ccache
+      - ccache:/root/.ccache
+    working_dir: /workspace
+    # Keep container running
+    stdin_open: true
+    tty: true
+    # Override command to keep container alive
+    command: sleep infinity
+
+volumes:
+  dev-workspace:
+  ccache:
